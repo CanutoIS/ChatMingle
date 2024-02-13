@@ -5,13 +5,12 @@ const generateTokenAndSetCookie = (userId, res) => {
         expiresIn: '15d'
     })
 
-    res.cookie('jwt', token, {
+    res.cookie("jwt", token, {
         maxAge: 15 * 24 * 60 * 60 * 1000, // Miliseconds
         httpOnly: true, // Prevent XSS attacks, also known as cross-site scripting attacksforgery
         sameSite: "strict", // CSRF attacks cross-site request forgery attacks
         secure: process.env.NODE_ENV !== 'development'
     })
-    console.log(process.env.NODE_ENV)
 }
 
 export default generateTokenAndSetCookie
