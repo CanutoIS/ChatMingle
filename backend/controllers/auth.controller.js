@@ -9,6 +9,10 @@ export const signup = async (req, res) => {
         if(password !== confirmPassword) {
             return res.status(400).json({ error: "Passwords don't match" })
         }
+        
+        if(password.lenght < 6) {
+            return res.status(400).json({ error: "Password must be at least 6 characters" })
+        }
 
         const user = await User.findOne({ username })
 
