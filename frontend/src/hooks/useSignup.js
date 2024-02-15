@@ -11,6 +11,8 @@ const useSignup = () => {
     
     if(!success) return
 
+    setLoading(true)
+    
     try {
       const res = await fetch('http://localhost:5000/api/auth/signup', {
         method: 'POST',
@@ -28,7 +30,6 @@ const useSignup = () => {
       localStorage.setItem('chat-user', JSON.stringify(data))
       
       setAuthUser(data)
-
     } catch (error) {
       toast.error(error.message)
     } finally {
