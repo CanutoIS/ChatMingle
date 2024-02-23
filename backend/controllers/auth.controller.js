@@ -37,10 +37,10 @@ export const signup = async (req, res) => {
         if(!newUser) 
             res.status(400).json({ error: "Invalid user data" })
 
-        console.log(newUser._id.toString())
-        generateTokenAndSetCookie(newUser._id, res)
-
         await newUser.save()
+        
+        // const newUserId = newUser._id.toString()
+        generateTokenAndSetCookie(newUser._id, res)
 
         res.status(201).json({
             _id: newUser._id,
